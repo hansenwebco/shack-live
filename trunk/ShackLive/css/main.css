@@ -1,0 +1,64 @@
+﻿body
+{
+	background: black;
+	color: #FFFFFF;
+	font-family: arial,helvetica,clean,sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	padding: 0px;
+	margin: 0px;
+}
+#info
+{
+font-size:10px;
+}
+.post
+{
+	/*border-top: solid 1px #AEAE9B;*/
+	background: #222222;
+	margin-bottom: 1px;
+	padding: 5px;
+	overflow:hidden;
+	white-space: nowrap;
+	
+}
+.up 
+{
+background: green;
+}
+.down
+{
+background: red;
+}
+
+#header
+{
+	background: #F02E01;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px;
+	height:18px;
+
+}
+#loading img {
+
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	
+
+}
+#loading
+{
+float:left;
+padding-left:5px;
+}
+#title
+{
+float:left;
+}
+a
+{
+	color: #AEAE9B;
+}
