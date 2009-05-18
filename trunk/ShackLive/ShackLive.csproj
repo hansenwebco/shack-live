@@ -60,6 +60,7 @@
     <Content Include="js\jquery-1.3.2.js" />
     <Content Include="js\jquery-ui-1.7.1.custom.min.js" />
     <Content Include="js\jquery.dates.js" />
+    <Content Include="Pics.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +77,13 @@
     </Compile>
     <Compile Include="json\shackapi_json.aspx.designer.cs">
       <DependentUpon>shackapi_json.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pics.aspx.cs">
+      <DependentUpon>Pics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pics.aspx.designer.cs">
+      <DependentUpon>Pics.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
