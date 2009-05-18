@@ -22,7 +22,7 @@
       $('#loading').show();
       document.title = "ShackLive - Updating";
 
-      $.getJSON("/json/shackapi_json.aspx",
+      $.getJSON("/json/shackapi_json.aspx<%if (string.IsNullOrEmpty(Request.QueryString["story"]) == false) { Response.Write("?story=" + Request.QueryString["story"]); }%>",
         function(data) {
           $('#posts').html(''); // reset the html area
 

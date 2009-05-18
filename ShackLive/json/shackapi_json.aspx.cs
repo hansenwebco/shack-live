@@ -26,10 +26,16 @@ namespace ShackLive.json
 
 
 
+
+
             if (Application["posts"] != null)
                 posts = (List<ShackPost>)Application["posts"];
 
-            LoadPosts(null, null);
+            if (string.IsNullOrEmpty(Request.QueryString["story"]))
+                LoadPosts(null, null);
+            else
+                LoadPosts(null, Request.QueryString["story"]);
+
 
             Application["posts"] = posts;
 
@@ -46,6 +52,8 @@ namespace ShackLive.json
 
             if (pageid != null && story != null)
                 sUrl = ConfigurationManager.AppSettings["siteAPIURL"] + story + "." + pageid + ".xml";
+            else if (pageid == null && story !=null)
+                sUrl = ConfigurationManager.AppSettings["siteAPIURL"] + story + ".1.xml";
             else
                 sUrl = ConfigurationManager.AppSettings["siteAPIURL"];
 
@@ -94,7 +102,7 @@ namespace ShackLive.json
 
 
                 sp.age = span.Hours + "h " + span.Minutes + "m";
-                
+
 
                 if (newpost == true)
                     posts.Add(sp);
