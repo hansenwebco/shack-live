@@ -31,7 +31,7 @@
             var lastpos = GetLastPosition(item.id)
 
 
-            var display_text = i + 1 + ". " + item.preview + "<br/><span id='info'>by: " + item.author + " - " + item.age + " - <a target='_blank' href='http://www.shacknews.com/laryn.x?id=" + item.id + "#itemanchor_" + item.id + "'>" + item.replies + " replies</a> [ " + item.ppm.toFixed(4) + " ]</span>"
+            var display_text = i + 1 + ". " + item.preview + "<br/><span id='info'>by: " + item.author + " - " + item.age + " - <a target='_blank' href='http://www.shacknews.com/laryn.x?id=" + item.id + "#itemanchor_" + item.id + "'>" + item.replies + " replies</a> [ " + item.ppm.toFixed(2) + " ]</span>"
 
 
             if (lastpos >= 0 && lastpos > i)
@@ -39,7 +39,7 @@
             else if (lastpos >= 0 && lastpos < i)
               $("<div/>").attr("class", "post").attr("flash", flash).css('background-color', 'red').html(display_text + "(-" + (i - lastpos) + ")").effect('highlight', {}, 2000).appendTo("#posts");
             else if ((lastJson != null) && (lastJson[i] != null) && (lastJson[i].replies != null) && (lastJson[i].replies < item.replies))
-              $("<div/>").attr("class", "post").attr("flash", flash).css('background-color', '#E9AB17').html(display_text).effect('highlight', {}, 2000).appendTo("#posts");
+              $("<div/>").attr("class", "post").attr("flash", flash).css('background-color', '#095C9F').html(display_text + "(+" + (item.replies-lastJson[i].replies) + ")").effect('highlight', {}, 2000).appendTo("#posts");
             else
               $("<div/>").attr("class", "post").attr("flash", flash).html(display_text).appendTo("#posts");
 
