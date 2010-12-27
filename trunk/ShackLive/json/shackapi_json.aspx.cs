@@ -98,7 +98,7 @@ namespace ShackLive.json
                 string startdate = item.Attributes["date"].Value.Trim();
                 DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
 
-                TimeSpan span = DateTime.Now.AddHours(-1).Subtract(nodedate);
+                TimeSpan span = DateTime.Now.Subtract(nodedate);
 
 
                 sp.age = span.Hours + "h " + span.Minutes + "m";
@@ -123,10 +123,10 @@ namespace ShackLive.json
             DateTime nodedate;
             DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
 
-            TimeSpan span = DateTime.Now.AddHours(-1).Subtract(nodedate);
+            TimeSpan span = DateTime.Now.Subtract(nodedate);
 
 
-            return (replies / span.TotalHours);
+            return (replies / span.TotalMinutes);
 
         }
 
