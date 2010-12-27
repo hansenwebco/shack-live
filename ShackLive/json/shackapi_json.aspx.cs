@@ -96,7 +96,7 @@ namespace ShackLive.json
 
                 DateTime nodedate;
                 string startdate = item.Attributes["date"].Value.Trim();
-                DateTime.TryParseExact(startdate.ToString().Substring(0, startdate.ToString().Length - 4), "MMM dd, yyyy h:mmtt", null, System.Globalization.DateTimeStyles.None, out nodedate);
+                DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
 
                 TimeSpan span = DateTime.Now.AddHours(-1).Subtract(nodedate);
 
@@ -121,12 +121,12 @@ namespace ShackLive.json
         protected double GetPostsPerMinute(int replies, string startdate)
         {
             DateTime nodedate;
-            DateTime.TryParseExact(startdate.ToString().Substring(0, startdate.ToString().Length - 4), "MMM dd, yyyy h:mmtt", null, System.Globalization.DateTimeStyles.None, out nodedate);
+            DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
 
             TimeSpan span = DateTime.Now.AddHours(-1).Subtract(nodedate);
 
 
-            return (replies / span.TotalMinutes);
+            return (replies / span.TotalHours);
 
         }
 
