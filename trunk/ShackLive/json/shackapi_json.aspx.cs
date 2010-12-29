@@ -40,7 +40,7 @@ namespace ShackLive.json
             Application["posts"] = posts;
 
             JavaScriptSerializer js = new JavaScriptSerializer();
-            string json = js.Serialize(posts.Where(w => w.replies > 0).OrderByDescending(o => o.ppm).Take(50));
+            string json = js.Serialize(posts.Where(w => w.replies > 0).OrderBy(o => o.ppm).Take(50));
 
             Response.Write(json);
 
@@ -98,7 +98,7 @@ namespace ShackLive.json
                 string startdate = item.Attributes["date"].Value.Trim();
                 DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
 
-                TimeSpan span = DateTime.Now.Subtract(nodedate);
+                TimeSpan span = DateTime.Now.AddHours(-3).Subtract(nodedate);
 
 
                 sp.age = span.Hours + "h " + span.Minutes + "m";
@@ -123,10 +123,10 @@ namespace ShackLive.json
             DateTime nodedate;
             DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
 
-            TimeSpan span = DateTime.Now.Subtract(nodedate);
+            TimeSpan span = DateTime.Now.AddHours(-3).Subtract(nodedate);
 
 
-            return (replies / span.TotalMinutes);
+            return (span.TotalMinutes / replies);
 
         }
 
