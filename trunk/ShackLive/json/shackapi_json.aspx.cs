@@ -24,10 +24,6 @@ namespace ShackLive.json
             Response.Expires = -1337;
             Response.ContentType = "application/json";
 
-
-
-
-
             if (Application["posts"] != null)
                 posts = (List<ShackPost>)Application["posts"];
 
@@ -52,7 +48,7 @@ namespace ShackLive.json
 
             if (pageid != null && story != null)
                 sUrl = ConfigurationManager.AppSettings["siteAPIURL"] + story + "." + pageid + ".xml";
-            else if (pageid == null && story !=null)
+            else if (pageid == null && story != null)
                 sUrl = ConfigurationManager.AppSettings["siteAPIURL"] + story + ".1.xml";
             else
                 sUrl = ConfigurationManager.AppSettings["siteAPIURL"];
@@ -87,29 +83,34 @@ namespace ShackLive.json
                 }
 
 
-                sp.ppm = GetPostsPerMinute(Convert.ToInt32(item.Attributes["reply_count"].Value), item.Attributes["date"].Value);
+
                 sp.preview = item.Attributes["preview"].Value.Trim();
                 sp.replies = Convert.ToInt32(item.Attributes["reply_count"].Value);
                 sp.id = item.Attributes["id"].Value.Trim();
                 sp.storyid = storyID.ToString();
                 sp.author = item.Attributes["author"].Value.Trim();
-
-                DateTime nodedate;
-                string startdate = item.Attributes["date"].Value.Trim();
-                DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
-
-                TimeSpan span = DateTime.Now.AddHours(-3).Subtract(nodedate);
-
-
-                sp.age = span.Hours + "h " + span.Minutes + "m";
+                sp.date = item.Attributes["date"].Value.Trim();
 
 
                 if (newpost == true)
                     posts.Add(sp);
             }
+
             stream = null;
             writer = null;
             doc = null;
+
+            foreach (var post in posts)
+            {
+                DateTime nodedate;
+                string startdate = post.date;
+                DateTime.TryParseExact(startdate.ToString(), "ddd MMM dd HH:mm:00 -0800 yyyy", null, System.Globalization.DateTimeStyles.None, out nodedate);
+                TimeSpan span = DateTime.Now.AddHours(-3).Subtract(nodedate);
+                post.age = span.Hours + "h " + span.Minutes + "m";
+
+                post.ppm = GetPostsPerMinute(post.replies, post.date);
+
+            }
 
             if ((pages > 1 && pageid == null || pages > 1 && pageid < pages) && Application["posts"] == null)
                 if (pageid == null)

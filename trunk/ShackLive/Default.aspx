@@ -39,7 +39,7 @@
             else if (lastpos >= 0 && lastpos < i)
               $("<div/>").attr("class", "post").attr("flash", flash).css('background-color', 'red').html(display_text + "(-" + (i - lastpos) + ")").effect('highlight', {}, 2000).appendTo("#posts");
             else if ((lastJson != null) && (lastJson[i] != null) && (lastJson[i].replies != null) && (lastJson[i].replies < item.replies))
-              $("<div/>").attr("class", "post").attr("flash", flash).css('background-color', '#095C9F').html(display_text + "(+" + (item.replies-lastJson[i].replies) + ")").effect('highlight', {}, 2000).appendTo("#posts");
+              $("<div/>").attr("class", "post").attr("flash", flash).css('background-color', '#095C9F').html(display_text + "(+" + (item.replies-lastJson[i].replies) + " posts)").effect('highlight', {}, 2000).appendTo("#posts");
             else
               $("<div/>").attr("class", "post").attr("flash", flash).html(display_text).appendTo("#posts");
 

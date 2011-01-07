@@ -34,4 +34,5 @@ public class ShackPost
     public string storyid { get; set; }
     public string author { get; set; }
     public string age { get; set; }
+    public string date { get; set; }
 }
