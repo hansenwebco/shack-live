@@ -1,0 +1,1 @@
+A simple ASP.net site that provides a real time (or almost) view of the current chatty at ShackNews.com.
